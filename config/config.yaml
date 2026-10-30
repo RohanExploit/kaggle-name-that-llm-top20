@@ -1,0 +1,102 @@
+# Name That LLM - Kaggle Competition ($50,000 Prize Pool)
+# Configuration File
+
+competition:
+  name: "name-that-llm"
+  url: "https://www.kaggle.com/competitions/name-that-llm"
+  metric: "balanced_accuracy"
+  num_classes: 18
+
+seed: 42
+
+models:
+  # 18 candidate LLMs exactly matching competition specification
+  classes:
+    - "gpt-5.5"
+    - "gpt-5.6-luna"
+    - "gpt-5.6-sol"
+    - "gpt-5.6-terra"
+    - "gpt-6-astra"
+    - "gemini-3.1-pro-preview"
+    - "gemini-3.6-flash"
+    - "gemini-3.7-flash"
+    - "gemini-3.8-flash"
+    - "claude-fable-5"
+    - "claude-opus-4-6"
+    - "claude-opus-4-8"
+    - "claude-opus-5"
+    - "claude-sonnet-5"
+    - "qwen3.8-max"
+    - "glm-5.3"
+    - "glm-5.3-flash"
+    - "kimi-k3"
+
+  # Provider / Lab grouping for hierarchical reasoning and diagnostic auditing
+  providers:
+    openai:
+      - "gpt-5.5"
+      - "gpt-5.6-luna"
+      - "gpt-5.6-sol"
+      - "gpt-5.6-terra"
+      - "gpt-6-astra"
+    google:
+      - "gemini-3.1-pro-preview"
+      - "gemini-3.6-flash"
+      - "gemini-3.7-flash"
+      - "gemini-3.8-flash"
+    anthropic:
+      - "claude-fable-5"
+      - "claude-opus-4-6"
+      - "claude-opus-4-8"
+      - "claude-opus-5"
+      - "claude-sonnet-5"
+    qwen:
+      - "qwen3.8-max"
+    zai:
+      - "glm-5.3"
+      - "glm-5.3-flash"
+    moonshot:
+      - "kimi-k3"
+
+data:
+  ref_data_path: "data/ref_dataset/passages_clean.csv"
+  prompts_path: "data/ref_dataset/prompts.csv"
+  reconstructed_prompts_path: "data/reconstructed_prompts/train_prompts_reconstructed.csv"
+  claude_extra_path: "data/extra_passages/ntl_extra_passages_claude.csv"
+  gpt_gemini_extra_path: "data/extra_gpt_gemini/ntl_generations.csv"
+  output_dir: "outputs"
+  checkpoint_dir: "checkpoints"
+
+cross_validation:
+  n_splits: 5
+  group_col: "prompt_id"
+  stratify_col: "model"
+
+features:
+  tfidf_word:
+    ngram_range: [1, 2]
+    max_features: 15000
+    sublinear_tf: true
+  tfidf_char:
+    ngram_range: [2, 5]
+    max_features: 25000
+    analyzer: "char_wb"
+    sublinear_tf: true
+
+lightgbm:
+  n_estimators: 600
+  learning_rate: 0.05
+  num_leaves: 31
+  colsample_bytree: 0.8
+  subsample: 0.8
+  random_state: 42
+  n_jobs: -1
+
+neural:
+  model_name: "microsoft/deberta-v3-small"
+  max_length: 384
+  batch_size: 16
+  learning_rate: 2.0e-5
+  epochs: 4
+  weight_decay: 0.01
+  warmup_ratio: 0.1

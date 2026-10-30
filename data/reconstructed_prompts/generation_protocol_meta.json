@@ -1,0 +1,47 @@
+{
+ "likely_template": "Write/Explain [a short|a vivid|an evocative|a poetic|a lyrical|a reflective] [passage|piece|explanation] [describing/narrate|explaining|arguing] {topic}, {stylistic constraints: imagery, metaphor, specific framing device, opening phrase, POV, or tone}. {Optional structural constraint: no headings, single cohesive passage, vary length}. (words {min}-{max})",
+ "topic_generation": "Topics appear drawn from a curated master list of ~150 'fascinating facts/concepts/thought experiments' spanning pop-science, philosophy, history, and literature \u2014 the kind of list assembled from popular science writing, philosophy 101 topics, physics/cosmology highlights, famous paradoxes, and iconic historical mysteries. Each topic is fairly specific (not just 'physics' but 'neutron star surface conditions' or 'Grand Tack hypothesis'), suggesting a hand-curated or LLM-brainstormed list organized first by broad domain category, then narrowed to a specific named phenomenon, paradox, or historical event. Many topics cluster around 'awe-inspiring science facts' and 'famous thought experiments', indicating the list creator favored novelty, vividness, and intellectual appeal over systematic curriculum coverage.",
+ "domain_mix": {
+  "physics": "25%",
+  "biology": "20%",
+  "philosophy": "15%",
+  "mathematics": "12%",
+  "history": "9%",
+  "creative prose": "9%",
+  "computer science": "7%",
+  "psychology": "5%",
+  "economics": "4%",
+  "other": "3%"
+ },
+ "length_mechanism": "Each prompt has a unique, non-round min/max word range (e.g., 39-228, 48-265), strongly suggesting lengths were randomly sampled per-prompt (likely min ~36-60 and max ~150-275, drawn from a random distribution or jittered formula) rather than fixed buckets like 'short/medium/long'. The instruction 'vary the length' in the text plus the embedded explicit word range implies the host programmatically appended a randomly generated (min,max) word-count constraint to each prompt template, probably sampling min from a lower range and max by adding a random offset, to force stylistic variety across the 18 models' outputs for the same prompt.",
+ "test_prompt_predictions": {
+  "domains": "Similar distribution: heavy on physics/cosmology, biology (esp. neuroscience & evolution), philosophy (thought experiments), mathematics (famous theorems/paradoxes), history (ancient mysteries/inventions), with lighter sampling of economics, CS, psychology, and creative fiction.",
+  "style": "Single self-contained passages (no headings/lists), instructed to use vivid/poetic/metaphor-rich language or evocative imagery, often invoking a named scientist, thought experiment, or historical artifact; explicit word-count range appended at the end; occasional instruction to open with a specific phrase or use a particular POV (first/second person); mix of 'explain concept' vs 'describe/narrate' vs 'argue/opinion' task types."
+ },
+ "synthetic_data_recipe": {
+  "template": "Write/Explain a [vivid|short|poetic|evocative|lyrical|reflective] [passage|piece] [describing|explaining|exploring|arguing] {specific named concept/phenomenon/paradox/event}, {add 1-2 stylistic constraints: metaphor use, named analogy, POV, opening phrase, 'no headings', avoid jargon, cite a specific example/scientist}. (words {min}-{max})",
+  "topic_list_strategy": "1. Build a master list of ~300-500 'fascinating facts & ideas' spanning domains: physics/cosmology (black holes, quantum mechanics, astrophysics), biology (neuroscience, evolution, ecology, cell biology), mathematics (famous theorems, paradoxes, infinities), philosophy (thought experiments, ethics, epistemology), history (ancient mysteries, inventions, civilizational collapses), economics (behavioral/game theory concepts), computer science (algorithms, complexity theory, AI), psychology (cognitive biases, perception), and creative/literary devices (narrative techniques, sensory experiences). 2. For each topic, assign a task-type verb from {explain, describe/narrate, compare, argue/opinion, story/fiction}. 3. Randomly select 1-3 stylistic modifiers from a bank (poetic/lyrical, vivid/sensory, second-person, metaphor-rich, no headings, single paragraph, starts with X phrase, named analogy). 4. Sample min_words from ~36-60 and max_words by adding a random 130-220 word span. 5. Concatenate into final prompt text ending with '(words {min}-{max}).' 6. Rotate the same final prompt across 18 different AI models to collect comparative stylistic outputs."
+ },
+ "example_new_prompts": [
+  "[physics | explain concept] Explain the concept of time crystals\u2014systems that break time-translation symmetry by repeating in time without consuming energy\u2014using vivid, accessible language for a general audience. (words 44-220)",
+  "[biology | describe/narrate] Write a vivid, poetic passage describing the process of chrysalis metamorphosis, portraying the caterpillar's near-total dissolution into imaginal cells before reassembling as a butterfly. (words 42-230)",
+  "[mathematics | explain concept] Explain the concept of Zeno's paradox of Achilles and the tortoise, using vivid imagery to convey the puzzle of infinite subdivisions of motion. (words 40-215)",
+  "[history | describe/narrate] Write an evocative passage describing the fall of Constantinople in 1453, capturing the final hours of the Byzantine Empire through sensory, dramatic prose. (words 48-240)",
+  "[philosophy | explain concept] Explain the trolley-adjacent 'repugnant conclusion' in population ethics, describing why maximizing total welfare can lead to counterintuitive outcomes. (words 45-210)",
+  "[computer science | explain concept] Explain how blockchain achieves decentralized consensus without a central authority, using the analogy of a shared, tamper-proof ledger passed among strangers. (words 42-225)",
+  "[physics | describe/narrate] Write a lyrical passage describing the formation of a supernova, from stellar collapse to the explosive dispersal of heavy elements into space. (words 46-235)",
+  "[psychology | explain concept] Explain the Dunning-Kruger effect, describing why those with the least competence often overestimate their abilities the most. (words 40-215)",
+  "[biology | explain concept] Explain how CRISPR-Cas9 gene editing works, using the metaphor of molecular scissors guided by a genetic address book. (words 43-230)",
+  "[creative prose | story/fiction] Write a short piece of flash fiction depicting the last human conversation before an AI singularity event, told entirely in dialogue. (words 48-220)",
+  "[mathematics | explain concept] Explain the concept of imaginary infinities (different sizes of infinity) using Cantor's diagonal argument, in an engaging, intuitive way. (words 46-225)",
+  "[history | explain concept] Explain how the Code of Hammurabi established some of humanity's first written laws, and what it reveals about ancient Babylonian justice. (words 42-200)",
+  "[philosophy | argue/opinion] Discuss whether moral luck undermines our usual notion of moral responsibility, using an example of two drivers who make the same mistake with different outcomes. (words 44-230)",
+  "[physics | explain concept] Explain how LIGO detects gravitational waves by measuring minute changes in laser interferometer arm lengths smaller than a proton's width. (words 44-215)",
+  "[biology | describe/narrate] Write a vivid passage describing the biochemistry of bioluminescent fungi glowing faintly in a midnight forest. (words 40-200)",
+  "[economics | explain concept] Explain the concept of moral hazard using the example of insurance encouraging riskier behavior. (words 42-210)",
+  "[computer science | describe/narrate] Describe, in poetic prose, what it might feel like for an AI model to process a prompt token by token. (words 45-220)",
+  "[creative prose | describe/narrate] Write a short sensory passage describing the final moments of a dying star collapsing into a black hole, from the perspective of a nearby planet's inhabitants. (words 48-235)",
+  "[philosophy | explain concept] Explain the thought experiment of Buridan's donkey, illustrating the paradox of rational paralysis when faced with two equally appealing options. (words 40-200)",
+  "[mathematics | explain concept] Explain the Birthday Paradox, describing why it takes surprisingly few people in a room for two to share a birthday. (words 42-210)"
+ ]
+}

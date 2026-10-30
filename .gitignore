@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Large Model Weights and Binaries (>10MB)
+*.pt
+*.bin
+*.safetensors
+*.npz
+*.joblib
+*.pkl
+*.pickle
+*.h5
+*.onnx
+*.zip
+*.tar.gz
+*.tgz
+
+# Cache and Checkpoint Directories
+cache/
+checkpoints/
+kernels/*_output/
+kernels/**/cache/
+dataset_upload/
+
+# Large Raw Datasets (Keep small train.csv/sample_submission.csv, ignore large parquet pools)
+*.parquet
+data/*.parquet
+data/open_pool/
+data/raw/
+outputs/*.zip
+outputs/*.csv
+scratch/
+
+
+# Scratch Downloads and Third-Party Binary Banks
+scratch/rare_class_svc/
+scratch/spectral_style/
+scratch/v14_log/
+scratch/v14_complete_output/
+scratch/sub_output/
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db

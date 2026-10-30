@@ -1,0 +1,6 @@
+accuracy: 0.2339250493096647
+balanced_accuracy: 0.23226314258922956
+n_prompts: 296
+n_samples: 5070
+provider_accuracy: 0.5674556213017752
+sibling_error_fraction: 0.43537590113285274
