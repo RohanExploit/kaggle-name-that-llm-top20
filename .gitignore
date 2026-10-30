@@ -50,3 +50,7 @@ scratch/sub_output/
 *.log
 .DS_Store
 Thumbs.db
+
+outputs/latest_lb/
+outputs/*.zip
+scratch/
