@@ -18,13 +18,15 @@ def log(msg):
 def check_submissions():
     try:
         res = subprocess.run(
-            ["kaggle", "competitions", "submissions", "-c", "name-that-llm", "--csv"],
-            capture_output=True, text=True, check=True
+            "kaggle competitions submissions -c name-that-llm --csv",
+            shell=True, capture_output=True, text=True
         )
+        if res.returncode != 0:
+            log(f"Submissions check returned code {res.returncode}: {res.stderr.strip()[:120]}")
+            return None
         lines = [l.strip() for l in res.stdout.splitlines() if l.strip() and not l.startswith("Warning:")]
         if len(lines) < 2:
             return None
-        header = lines[0].split(",")
         rows = []
         for l in lines[1:]:
             parts = l.split(",")
@@ -38,7 +40,7 @@ def check_submissions():
                 })
         return rows
     except Exception as e:
-        log(f"Error checking submissions: {e}")
+        log(f"Exception checking submissions: {e}")
         return None
 
 def update_tracker(active_sub, score):
@@ -52,14 +54,15 @@ Last Updated: {datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")}
 - **Top 5 Cutoff**: 0.7080
 - **Rank 1**: 0.7320 (Hod Carriers)
 
-## Submission Status
-- **Active Submission ID**: `{active_sub.get('ref', '57796150')}`
+## Active Submission Status
+- **Submission ID**: `{active_sub.get('ref', '57796150')}`
 - **Kernel**: `rohanexploit/name-that-llm-ensemble-sub` (v13)
 - **Status**: `{active_sub.get('status', 'PENDING')}`
 - **Score**: `{score or 'Evaluating on hidden test split'}`
 
 ## Staged Next-Gen Champion
 - **Kernel**: `rohanexploit/name-that-llm-sota-v14` (Verified COMPLETE on GPU)
+- **GitHub**: https://github.com/RohanExploit/kaggle-name-that-llm-top20
 - **Key Upgrade**:
   - 6-fold V5 LoRA24 multi-LLM ensemble + CompStack + ATLAS 20% + Qwen3.8-27B GSQ3
   - Roman's 5-Fold GroupKFold OOF-calibrated Sibling Stylometry Residual (`sibling_style.py`)
@@ -70,7 +73,7 @@ Last Updated: {datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")}
         f.write(content)
 
 def main():
-    log("Starting Autonomous Kaggle Name-That-LLM Monitor Daemon...")
+    log("Starting Autonomous Kaggle Name-That-LLM Monitor Daemon v2...")
     last_status = None
     last_score = None
     

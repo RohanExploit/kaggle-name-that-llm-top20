@@ -1,6 +1,6 @@
 # Kaggle Name That LLM - Live Leaderboard Tracker
 
-Last Updated: 2026-10-30 12:05:22 UTC
+Last Updated: 2026-10-30 13:09:29 UTC
 
 ## Target
 - **Rank <= 20** (Current Cutoff: **0.6770** by Nishant Dahal)
@@ -8,14 +8,15 @@ Last Updated: 2026-10-30 12:05:22 UTC
 - **Top 5 Cutoff**: 0.7080
 - **Rank 1**: 0.7320 (Hod Carriers)
 
-## Submission Status
-- **Active Submission ID**: `57796150`
+## Active Submission Status
+- **Submission ID**: `57796150`
 - **Kernel**: `rohanexploit/name-that-llm-ensemble-sub` (v13)
 - **Status**: `SubmissionStatus.PENDING`
 - **Score**: `Evaluating on hidden test split`
 
 ## Staged Next-Gen Champion
 - **Kernel**: `rohanexploit/name-that-llm-sota-v14` (Verified COMPLETE on GPU)
+- **GitHub**: https://github.com/RohanExploit/kaggle-name-that-llm-top20
 - **Key Upgrade**:
   - 6-fold V5 LoRA24 multi-LLM ensemble + CompStack + ATLAS 20% + Qwen3.8-27B GSQ3
   - Roman's 5-Fold GroupKFold OOF-calibrated Sibling Stylometry Residual (`sibling_style.py`)
