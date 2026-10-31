@@ -37,5 +37,12 @@
     "lucasboesen/name-that-llm-train-tokattn",
     "lucasboesen/name-that-llm-train-tokattn2",
     "vnton37nguyn/ntl-train-lora-qwen25-instyle"
+  ],
+  "model_sources": [
+    "qwen-lm/qwen-3/Transformers/4b-base/1",
+    "qwen-lm/qwen-3/Transformers/14b-base/1",
+    "qwen-lm/qwen-3/Transformers/8b-base/1",
+    "qwen-lm/qwen2.5/Transformers/14b/1",
+    "qwen-lm/qwen2.5/Transformers/7b/1"
   ]
 }

@@ -64,6 +64,13 @@ kernel_meta = {
         "pjmathematician/ultrabert-380m-ntl"
     ],
     "competition_sources": ["name-that-llm"],
+    "model_sources": [
+        "qwen-lm/qwen-3/Transformers/4b-base/1",
+        "qwen-lm/qwen-3/Transformers/14b-base/1",
+        "qwen-lm/qwen-3/Transformers/8b-base/1",
+        "qwen-lm/qwen2.5/Transformers/14b/1",
+        "qwen-lm/qwen2.5/Transformers/7b/1"
+    ],
     "kernel_sources": [
         "lucasboesen/name-that-llm-glm4-9b-trunc25",
         "lucasboesen/name-that-llm-extract-encoders2",
