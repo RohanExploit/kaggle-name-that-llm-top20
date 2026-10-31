@@ -151,7 +151,7 @@ def apply_grouped_style_residual(logits, train_texts, test_texts, labels, y, gro
         old_p = softmax(old_logits, axis=1)
 
         margin = np.partition(old_p, -2, axis=1)[:, -1] - np.partition(old_p, -2, axis=1)[:, -2]
-        gate = np.clip((0.65 - margin) / 0.65, 0.0, 1.0)
+        gate = np.clip((0.85 - margin) / 0.85, 0.0, 1.0)
 
         strength = (max_alpha * reliability) * gate
         mix = (1.0 - strength[:, None]) * old_p + strength[:, None] * style_p
@@ -194,7 +194,7 @@ replacement_str = """        tot = (1 - a.sinkhorn) * np.log(P + 1e-12) + a.sink
             labels=LABELS,
             y=y,
             groups=train.prompt_id.values,
-            max_alpha=0.08
+            max_alpha=0.15
         )
     except Exception as _e:
         log('SIBLING RESIDUAL ERROR:', repr(_e))
